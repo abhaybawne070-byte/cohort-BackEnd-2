@@ -11,11 +11,11 @@ export const geminiModel  = new ChatGoogle({
 })
 
 export const mistralAIModel = new ChatMistralAI({
-    model:"mistal-meduim-lates",
+    model:"mistral-medium-latest",
     apiKey:config.Mistral_API_KEY,
 })
 
 export const cohereModel = new ChatCohere({
-    model:"command-a-2025",
+    model:"command-a-03-2025",
     apiKey:config.COHERE_API_KEY
 })
