@@ -3,6 +3,7 @@ import z from "zod"
 import { mistralAIModel,cohereModel } from "./model.ai.js"
 
 
+
 const state = new StateSchema({
     problem:z.string().default(""),
     problem_1:z.string().default(""),
