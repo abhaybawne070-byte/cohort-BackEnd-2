@@ -1,5 +1,6 @@
 import {StateGraph, type GraphNode, StateSchema} from "@langchain/langgraph"
 import z from "zod"
+import { mistralAIModel,cohereModel } from "./model.ai.js"
 
 
 const state = new StateSchema({
@@ -13,3 +14,17 @@ const state = new StateSchema({
         solution_2_reasoning:z.string().default(""),
     })
 })
+
+
+const solutionNode:GraphNode<typeof state> = async(state) => {
+
+    const [mistralResponse, cohereResponse ] = await Promise.all([
+        mistralAIModel.invoke(state.problem),
+        cohereModel.invoke(state.problem)
+    ])
+
+    return {
+        solution_1:mistralResponse.text,
+        solution_2:cohereResponse.text,
+    }
+}
