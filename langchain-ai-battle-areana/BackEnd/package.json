@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@langchain/cohere": "^1.0.4",
+    "@langchain/core": "^1.1.39",
     "@langchain/google": "^0.1.10",
     "@langchain/langgraph": "^1.2.7",
     "@langchain/mistralai": "^1.0.7",
