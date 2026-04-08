@@ -23,7 +23,8 @@ app.get("/health", (_req, res) => {
 // POST /battle  { "problem": "..." }
 // Returns: { problem, solution_1, solution_2, judge: { ... } }
 app.post("/battle", async (req, res) => {
-  const { problem } = req.body as { problem?: string }
+  const body = req.body as Record<string, unknown>
+  const problem = typeof body?.problem === 'string' ? body.problem : undefined
 
   if (!problem || typeof problem !== "string" || !problem.trim()) {
     res.status(400).json({ error: "Missing or invalid 'problem' field" })
