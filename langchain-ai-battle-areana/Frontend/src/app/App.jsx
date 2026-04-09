@@ -7,17 +7,33 @@ import { mockData } from '../data/mockData';
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleSendMessage = (text) => {
-    // In a real app, you would fetch from an API here.
-    // We are simulating the response using the mock data.
-    const newMessage = {
-      id: Date.now(),
-      problem: text,
-      ...mockData
-    };
-    
-    setMessages([...messages, newMessage]);
+  const handleSendMessage = async (text) => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:3000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await response.json();
+      
+      const newMessage = {
+        id: Date.now(),
+        problem: data.problem || text,
+        solution_1: data.solution_1,
+        solution_2: data.solution_2,
+        judge: data.judge
+      };
+      
+      setMessages((prev) => [...prev, newMessage]);
+    } catch (error) {
+      console.error("Error fetching from backend:", error);
+      alert("Failed to get response from AI. Please check if the backend is running.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,6 +67,11 @@ function App() {
             {messages.map((msg) => {
               const isSolution1Winner = msg.judge.solution_1_score > msg.judge.solution_2_score;
               const isSolution2Winner = msg.judge.solution_2_score > msg.judge.solution_1_score;
+              const finalRecommendation = isSolution1Winner
+                ? "Solution 1 is better because it received a higher score from the judge."
+                : isSolution2Winner
+                  ? "Solution 2 is better because it received a higher score from the judge."
+                  : "Both solutions performed equally well according to the judge.";
 
               return (
                 <div key={msg.id} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -64,14 +85,14 @@ function App() {
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-8">
                       <SolutionCard
-                        title="Model Alpha"
+                        title="Mistral AI"
                         content={msg.solution_1}
                         isWinner={isSolution1Winner}
                         score={msg.judge.solution_1_score}
                         reasoning={msg.judge.solution_1_reasoning}
                       />
                       <SolutionCard
-                        title="Model Beta"
+                        title="Cohere AI"
                         content={msg.solution_2}
                         isWinner={isSolution2Winner}
                         score={msg.judge.solution_2_score}
@@ -79,17 +100,22 @@ function App() {
                       />
                     </div>
                     
-                    <JudgeRecommendation recommendation={msg.judge.final_recommendation} />
+                    <JudgeRecommendation recommendation={finalRecommendation} />
                   </div>
                 </div>
               );
             })}
           </div>
         )}
+        {loading && (
+          <div className="flex justify-center mt-8">
+            <span className="text-indigo-600 font-semibold animate-pulse">Wait, analyzing models...</span>
+          </div>
+        )}
       </main>
 
       <div className="fixed bottom-0 w-full z-20">
-         <ChatInput onSendMessage={handleSendMessage} />
+         <ChatInput onSendMessage={handleSendMessage} disabled={loading} />
       </div>
     </div>
   );
