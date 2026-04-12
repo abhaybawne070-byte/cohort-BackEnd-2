@@ -4,7 +4,11 @@ import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema({
     email:{rype:String, required:true, unique:true },
-    contact:{type:String, required:true},
+    contact:{
+        // country:{type:String, required:true },
+        number:{type:String, required:true}
+
+    },
     password:{type:String, required:true},
     fullname:{type:String, required:true},
     role:{
@@ -13,6 +17,9 @@ const userSchema = new mongoose.Schema({
         default:"buyer"
     }
 });
+
+
+
 
 const userModel = mongoose.model('user',userSchema)
 
