@@ -17,7 +17,12 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text })
       });
+      
       const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || "Backend returned an error");
+      }
       
       const newMessage = {
         id: Date.now(),
@@ -30,7 +35,7 @@ function App() {
       setMessages((prev) => [...prev, newMessage]);
     } catch (error) {
       console.error("Error fetching from backend:", error);
-      alert("Failed to get response from AI. Please check if the backend is running.");
+      alert(`AI Request Failed: ${error.message}\n(This could be due to API rate limits or high demand)`);
     } finally {
       setLoading(false);
     }
