@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         enum:["buyer", "seller"],
         default:"buyer"
     }
-})
+});
 
 const userModel = mongoose.model('user',userSchema)
 
