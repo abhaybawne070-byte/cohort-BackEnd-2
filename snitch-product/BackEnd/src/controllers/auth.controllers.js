@@ -1,6 +1,13 @@
 import userModel from "../models/user.model.js";
+import jwt from "jsonwebtoken"
+import { config } from "../config/config.js";
 
+async function sendTokenResponse(user,res){
 
+    const token = jwt.sing({
+        id:user._id,
+    })
+}
 
 export const register = async (req,res) =>{
     const {email,contact,password,fullname} = req.body;
@@ -17,7 +24,14 @@ export const register = async (req,res) =>{
             return res.status(400).json({message:"user with this email or contact already exists"})
         }
 
-        
+        const user = await userModel.create({
+            email,
+            contact,
+            password,
+            fullname
+        })
+
+
     }catch (error){
         console.log(error)
         return res.status(500).json({message:"server error"})
