@@ -6,7 +6,7 @@ async function sendTokenResponse(user,res){
 
     const token = jwt.sing({
         id:user._id,
-    })
+    },config.JWT_SECRET)
 }
 
 export const register = async (req,res) =>{
