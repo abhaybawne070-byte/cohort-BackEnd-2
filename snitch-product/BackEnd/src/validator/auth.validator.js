@@ -1,9 +1,13 @@
 import  {body, validationResult} from "express-validator"
 
+function validateRequest(req, res, next){
+    const errors =validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()});
+    }
 
-
-
-
+    next();
+}
 
 
 export const validateRegisterUser =[
@@ -18,3 +22,5 @@ export const validateRegisterUser =[
         .notEmpty().withMessage("full name is required")
         .length({min:3}).withMessage("full name must be at least 3 characters long")
 ]
+
+validateRequest();
