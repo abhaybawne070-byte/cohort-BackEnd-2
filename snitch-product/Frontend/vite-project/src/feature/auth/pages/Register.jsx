@@ -1,143 +1,120 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Register = () => {
-    const [formData, setFormData] = useState({
-        fullName: '',
-        contactNumber: '',
-        email: '',
-        password: '',
-        isSeller: false
-    });
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : value
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Registering with:', formData);
-    };
-
     return (
-        <div className="min-h-screen bg-[#12140f] text-[#e3e3da] font-sans flex items-center justify-center p-6 selection:bg-[#c3cf52] selection:text-[#12140f]">
-            <div className="w-full max-w-xl">
-                {/* Header section with ample breathing space */}
-                <div className="mb-16 mt-8">
-                    <h1 className="text-[2.5rem] lg:text-[3.5rem] leading-tight font-medium tracking-tight mb-4 text-[#e3e3da]">
-                        Create Account
-                    </h1>
-                    <p className="text-[#c8c8b2] text-lg max-w-md leading-relaxed">
-                        Join a curated organic space where your vision meets utility.
-                    </p>
+        <main className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-6 md:py-10 bg-background text-on-surface w-full">
+            {/* Dynamic Product Experience Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-black">
+                <div 
+                    className="absolute inset-0 opacity-60 transition-transform duration-[10000ms] ease-linear scale-105" 
+                    style={{
+                        backgroundImage: `url('/bg_1.png')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        filter: 'contrast(110%) brightness(40%) saturate(120%)'
+                    }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+            </div>
+
+            {/* Registration Container */}
+            <div className="relative z-10 w-full max-w-[540px]">
+                <div className="text-center mb-6">
+                    <h1 className="font-headline text-4xl md:text-5xl tracking-tighter text-primary mb-2">SNITCH</h1>
+                    <p className="font-label text-[10px] tracking-[0.4em] uppercase text-on-surface-variant opacity-60">Join the collective of discerning harvesters</p>
                 </div>
 
-                {/* Form Section */}
-                <form onSubmit={handleSubmit} className="space-y-8 bg-[#1a1c17] p-8 md:p-12 rounded-[2rem] shadow-[0_40px_80px_rgba(13,15,10,0.5)]">
-                    <div className="space-y-6">
+                <div className="bg-surface-container-low/40 backdrop-blur-3xl p-6 md:p-10 rounded-lg shadow-2xl">
+                    <form action="#" className="space-y-6" method="POST">
                         {/* Full Name */}
-                        <div className="flex flex-col space-y-2">
-                            <label htmlFor="fullName" className="text-sm font-medium text-[#c8c8b2] px-1">Full Name</label>
+                        <div className="group relative">
+                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="name">Full Name</label>
                             <input 
-                                type="text" 
-                                id="fullName"
-                                name="fullName"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                                placeholder="John Doe"
-                                className="bg-[#34352f] text-[#e3e3da] placeholder-[#c8c8b2]/40 outline-none px-5 py-4 rounded-xl focus:bg-[#383a34] transition-all duration-300 border-b-2 border-transparent focus:border-[#c3cf52] shadow-inner" 
-                                required
-                            />
-                        </div>
-
-                        {/* Contact Number */}
-                        <div className="flex flex-col space-y-2">
-                            <label htmlFor="contactNumber" className="text-sm font-medium text-[#c8c8b2] px-1">Contact Number</label>
-                            <input 
-                                type="tel" 
-                                id="contactNumber"
-                                name="contactNumber"
-                                value={formData.contactNumber}
-                                onChange={handleChange}
-                                placeholder="+1 (234) 567-8900"
-                                className="bg-[#34352f] text-[#e3e3da] placeholder-[#c8c8b2]/40 outline-none px-5 py-4 rounded-xl focus:bg-[#383a34] transition-all duration-300 border-b-2 border-transparent focus:border-[#c3cf52] shadow-inner" 
-                                required
+                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Arthur P. Morgan" 
+                                required 
+                                type="text"
                             />
                         </div>
 
                         {/* Email Address */}
-                        <div className="flex flex-col space-y-2">
-                            <label htmlFor="email" className="text-sm font-medium text-[#c8c8b2] px-1">Email Address</label>
+                        <div className="group relative">
+                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="email">Email Address</label>
                             <input 
-                                type="email" 
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="john@example.com"
-                                className="bg-[#34352f] text-[#e3e3da] placeholder-[#c8c8b2]/40 outline-none px-5 py-4 rounded-xl focus:bg-[#383a34] transition-all duration-300 border-b-2 border-transparent focus:border-[#c3cf52] shadow-inner" 
-                                required
+                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
+                                id="email" 
+                                name="email" 
+                                placeholder="curator@theharvest.com" 
+                                required 
+                                type="email"
+                            />
+                        </div>
+
+                        {/* Contact Number */}
+                        <div className="group relative">
+                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="phone">Contact Number</label>
+                            <input 
+                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
+                                id="phone" 
+                                name="phone" 
+                                placeholder="+1 (202) 555-0192" 
+                                type="tel"
                             />
                         </div>
 
                         {/* Password */}
-                        <div className="flex flex-col space-y-2">
-                            <label htmlFor="password" className="text-sm font-medium text-[#c8c8b2] px-1">Password</label>
+                        <div className="group relative">
+                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="password">Password</label>
                             <input 
-                                type="password" 
-                                id="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                placeholder="••••••••"
-                                className="bg-[#34352f] text-[#e3e3da] placeholder-[#c8c8b2]/40 outline-none px-5 py-4 rounded-xl focus:bg-[#383a34] transition-all duration-300 border-b-2 border-transparent focus:border-[#c3cf52] shadow-inner" 
-                                required
+                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
+                                id="password" 
+                                name="password" 
+                                placeholder="••••••••••••" 
+                                required 
+                                type="password"
                             />
                         </div>
-                    </div>
 
-                    {/* isSeller Checkbox */}
-                    <div className="pt-2 pb-4">
-                        <label className="flex items-center space-x-4 cursor-pointer group">
-                            <div className="relative flex items-center justify-center">
-                                <input 
-                                    type="checkbox" 
-                                    name="isSeller"
-                                    checked={formData.isSeller}
-                                    onChange={handleChange}
-                                    className="peer appearance-none w-6 h-6 rounded bg-[#34352f] checked:bg-[#c3cf52] transition-colors duration-300 outline-none cursor-pointer"
-                                />
-                                <svg 
-                                    className="absolute w-4 h-4 text-[#2f3300] opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none" 
-                                    fill="none" 
-                                    viewBox="0 0 24 24" 
-                                    stroke="currentColor" 
-                                    strokeWidth="3"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                </svg>
+                        {/* Seller Toggle */}
+                        <div className="flex items-center justify-between pt-4">
+                            <div className="space-y-1">
+                                <span className="block font-label text-sm text-on-surface">Become a Merchant</span>
+                                <span className="block font-label text-[10px] text-on-surface-variant/60 uppercase tracking-wider">Access the Seller Guild dashboard</span>
                             </div>
-                            <span className="text-[#e3e3da] font-medium select-none group-hover:text-[#c3cf52] transition-colors duration-300">
-                                Register as a Seller
-                            </span>
-                        </label>
-                    </div>
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input className="sr-only peer" name="is_seller" type="checkbox"/>
+                                <div className="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+                            </label>
+                        </div>
 
-                    {/* Submit Button */}
-                    <div className="pt-4">
-                        <button 
-                            type="submit" 
-                            className="w-full py-4 rounded-full bg-gradient-to-br from-[#c3cf52] to-[#a2ad34] text-[#2f3300] font-bold text-lg hover:opacity-90 hover:shadow-[0_0_30px_rgba(195,207,82,0.15)] transition-all duration-300 active:scale-[0.98]"
-                        >
-                            Create Account
-                        </button>
+                        {/* Submit Action */}
+                        <div className="pt-6">
+                            <button className="w-full py-4 px-8 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-xs tracking-[0.3em] uppercase font-bold rounded-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 flex justify-center items-center gap-3" type="submit">
+                                Initiate Membership
+                            </button>
+                        </div>
+                    </form>
+
+                    <div className="mt-8 text-center">
+                        <p className="font-label text-[10px] tracking-widest text-on-surface-variant/40 uppercase">
+                            Already part of the heritage? 
+                            <a className="text-primary hover:text-primary-fixed ml-2 transition-colors" href="/login">Sign In</a>
+                        </p>
                     </div>
-                </form>
+                </div>
+
+                {/* Minimalist Footer Detail */}
+                <div className="mt-8 text-center space-y-4">
+                    <div className="flex justify-center items-center gap-8 opacity-30 grayscale contrast-150">
+                        <img alt="minimalist botanical logo icon of a single wheat stalk on dark background" className="h-6 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1RN63gl_XRaRZK2GPm5S4hpoZKbt6ymBSGOTKyLmTP7cpTgwB-NCQBoCm0t3VRmbW1r5O3sQSAkuoBj6U1c_KLlXZ_Rjzv7SIbnZufpiGRpLG5LTCtO6FliZ1NkiYczpuHgPzmJz_2UY7LcID1N6ojuHofQ206pPEWKlty0BOYa0jJeAlgOA3Xb3U3YFE2c14I29_pnzlk5KU-SgQBlxmZm8m-65L4dYVPsE7uUx2HF-l7NyvbSkM68w_ZO1FQSH-lpvKcjDyIUc" />
+                        <img alt="minimalist abstract geometric logo mark of a circle and line in gold" className="h-6 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5w3f8lL_1Y2fWMfZXLael0nCSJTE00tZA2pHhPVs2UmNkm9HTYoiZJ8BjFgNUZWTD_aVu6Zvjv_PInxaPJnRThW7wLO6ZASAiaSlGFSxSYKNdKJ8IxXT_Ne9u3UKjfJU7uroSx9O94MQUNzqj2WTTsJNYDy5TRlt9rLQ4kDfO6hcJ2E57RKgTITaCKV1l4ELtTOp1cZ9keqYmfHpYy_upJF7Ogf5GVLjJjQrmbUIQdB4YSAWAA8zxOeitzZRzrCsOVjYWRceRDkk" />
+                    </div>
+                    <p className="font-label text-[9px] tracking-[0.5em] text-on-surface-variant/30 uppercase">The Art of the Harvest © 2024</p>
+                </div>
             </div>
-        </div>
+        </main>
     );
 };
 
