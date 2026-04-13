@@ -1,6 +1,5 @@
 import {createBrowserRouter} from "react-router-dom"
-
-
+import Register from "../feature/auth/pages/Register"
 
 export const routes = createBrowserRouter([
     {
