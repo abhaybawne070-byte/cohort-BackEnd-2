@@ -27,9 +27,9 @@ const Register = () => {
     await handleRegister({
         email:formData.email,
         contact:formData.contactNumber,
-        password:formData.password,
         isSeller:formData.isSeller,
-        fullname: formData.fullName
+        fullname: formData.fullName,
+        password: formData.password
     })
   };
 
