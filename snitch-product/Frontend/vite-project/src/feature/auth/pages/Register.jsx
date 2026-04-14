@@ -1,6 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {useAuth} from "../hook/useAuth"
+
 
 const Register = () => {
+
+    const {handleRegister} = useAuth()
+
+    const [formDate, setFormDate] = useState({
+        fullname:"",
+        contactNumber:"",
+        email:"",
+        password:"",
+        isSeller:false,
+    })
+
+    const handleChange = (e) => {
+        const {name,value,type,checked} = e.target 
+        setFormDate(prev => ({
+            ...prev,
+            [name]:type === 'checkbox' ? checked : value
+        }))
+    }
+
+    const handleSubmit = async(e) =>{
+        e.preventDefault()
+        await handleRegister({
+            email:FormData.email,
+            contact:FormData.contactNumber,
+            password:FormData.password,
+            isSeller:FormData.isSeller,
+            fullname:FormData.fullname,
+        })
+    }
+
     return (
         <main className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-6 md:py-10 bg-background text-on-surface w-full">
             {/* Dynamic Product Experience Background */}
