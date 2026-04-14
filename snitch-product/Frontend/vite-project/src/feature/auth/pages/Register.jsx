@@ -22,10 +22,15 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add logic to register the user
+    await handleRegister({
+        email:formData.email,
+        contact:formData.contactNumber,
+        password:formData.password,
+        isSeller:formData.isSeller,
+        fullname: formData.fullName
+    })
   };
 
   return (
