@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#cec892",
+                        "primary-container": "#a39e6b",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary": "#382a49",
+                        "on-secondary": "#33311f",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#221533",
+                        "tertiary": "#d2bfe6",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#393939",
+                        "primary": "#cec892",
+                        "surface-container-highest": "#353534",
+                        "on-primary-container": "#38350c",
+                        "on-surface-variant": "#cac6b8",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline-variant": "#49473c",
+                        "on-primary": "#343109",
+                        "outline": "#949183",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-bottom-color: #cec892;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar (Suppressed for focused Transactional state per instructions, but kept as a minimal anchor if needed for brand identity) -->
+<header class="bg-[#131313]/80 backdrop-blur-xl flex justify-between items-center w-full px-12 py-6 fixed top-0 z-50">
+<div class="font-newsreader text-2xl tracking-[0.2em] text-[#cec892]">SNITCH</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#a3a3a3] font-medium hover:scale-[1.02] hover:text-[#cec892] transition-all duration-300 Manrope sans-serif tracking-widest text-xs uppercase" href="#">The Pantry</a>
+<a class="text-[#a3a3a3] font-medium hover:scale-[1.02] hover:text-[#cec892] transition-all duration-300 Manrope sans-serif tracking-widest text-xs uppercase" href="#">Our Roots</a>
+<a class="text-[#cec892] font-bold border-b-0 Manrope sans-serif tracking-widest text-xs uppercase" href="#">Register</a>
+</div>
+</header>
+<main class="min-h-screen flex items-stretch">
+<!-- Visual Anchor: Left Split (Artisanal Pulses) -->
+<section class="hidden lg:block w-7/12 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface z-10"></div>
+<img alt="Artisanal heirloom beans and black lentils" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60" data-alt="Macro close-up of dark heirloom beans and glossy black lentils on a textured charcoal stone surface with moody side lighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoYRsda-Txy1fUnXCR49c0ExMfPPA9qF5cxIRJP0ENmxEqfFE9JgTPeZX4-Jg0MEM1Zv8FwbEba3ySv5PN9IVvcyDSPItTfv_ZMtHMjhbyhvEp8lWr5V6fVhGILvr-tW1UO-YAyd4WnIxLVbbmggknThcK5wqOkO3Drb1MgJlTFB46Bf414m6FgHTNeSyE6qIpsIEAAiGuuTR-XJeaRZHaWXOEdXqePOtqi-gdAhC6I_-elGej0noshbz5qh66d6G8E5RrpoEKeeM"/>
+<div class="absolute bottom-20 left-20 z-20 max-w-md">
+<h2 class="font-headline text-5xl italic text-primary tracking-tighter mb-4 leading-tight">Curated by the earth, delivered to your cellar.</h2>
+<p class="font-body text-outline text-lg font-light tracking-wide">Join a community of connoisseurs who value the pedigree of every grain.</p>
+</div>
+</section>
+<!-- Form Canvas: Right Split -->
+<section class="w-full lg:w-5/12 flex items-center justify-center bg-surface relative z-20 px-8 py-24 md:px-16 lg:px-24">
+<div class="w-full max-w-md space-y-12">
+<header class="space-y-2">
+<span class="font-label text-[10px] tracking-[0.4em] text-primary uppercase">The Registry</span>
+<h1 class="font-headline text-6xl tracking-tighter text-on-surface">Create Account</h1>
+</header>
+<form class="space-y-10">
+<div class="space-y-8">
+<!-- Name Field -->
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">Full Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" placeholder="ALEXANDER VOGUE" type="text"/>
+</div>
+<!-- Email Field -->
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">Email Address</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" placeholder="CLIENT@EPICUREAN.COM" type="email"/>
+</div>
+<!-- Password Field -->
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">Password</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" placeholder="••••••••••••" type="password"/>
+</div>
+<!-- Contact Field -->
+<div class="group relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">Contact Number</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" placeholder="+1 (000) 000-0000" type="tel"/>
+</div>
+</div>
+<!-- Merchant Toggle -->
+<div class="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant/10 group hover:border-primary/20 transition-all duration-500">
+<div class="flex flex-col gap-1">
+<span class="font-label text-xs tracking-widest text-on-surface uppercase">Become a Merchant</span>
+<span class="font-body text-[10px] text-outline">List your artisanal harvest in our pantry</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-5 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-on-surface-variant after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="pt-6 space-y-6">
+<button class="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-xs uppercase tracking-[0.3em] font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/10">
+                            Create Account
+                        </button>
+<div class="text-center">
+<p class="font-body text-[10px] tracking-widest text-outline uppercase">
+                                Already a member? 
+                                <a class="text-primary hover:text-white transition-colors duration-300 ml-2" href="#">Sign In</a>
+</p>
+</div>
+</div>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0e0e0e] flex flex-col md:flex-row justify-between items-end w-full py-16 px-12">
+<div class="flex flex-col gap-6 w-full md:w-auto mb-12 md:mb-0">
+<div class="font-newsreader italic text-lg text-[#cec892]">SNITCH</div>
+<p class="text-[#4a4a4a] Manrope sans-serif text-[10px] tracking-widest uppercase">© 2024 SNITCH. THE DIGITAL SOMMELIER.</p>
+</div>
+<div class="flex flex-wrap gap-12">
+<div class="flex flex-col gap-3">
+<span class="text-[#cec892] Manrope sans-serif text-[10px] tracking-widest uppercase mb-2">Legal</span>
+<a class="text-[#4a4a4a] hover:text-white transition-colors duration-500 Manrope sans-serif text-[10px] tracking-widest uppercase" href="#">Terms of Terroir</a>
+<a class="text-[#4a4a4a] hover:text-white transition-colors duration-500 Manrope sans-serif text-[10px] tracking-widest uppercase" href="#">Privacy</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[#cec892] Manrope sans-serif text-[10px] tracking-widest uppercase mb-2">Ethics</span>
+<a class="text-[#4a4a4a] hover:text-white transition-colors duration-500 Manrope sans-serif text-[10px] tracking-widest uppercase" href="#">Sustainability Report</a>
+<a class="text-[#4a4a4a] hover:text-white transition-colors duration-500 Manrope sans-serif text-[10px] tracking-widest uppercase" href="#">Inquiry</a>
+</div>
+</div>
+</footer>
+</body></html>

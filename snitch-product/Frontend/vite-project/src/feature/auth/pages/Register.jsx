@@ -1,153 +1,162 @@
 import React, { useState } from 'react';
-import {useAuth} from "../hook/useAuth"
-
+import { Link } from 'react-router-dom';
+import { useAuth } from '../hook/useAuth';
 
 const Register = () => {
 
-    const {handleRegister} = useAuth()
+  const{handleRegister} = useAuth()
 
-    const [formDate, setFormDate] = useState({
-        fullname:"",
-        contactNumber:"",
-        email:"",
-        password:"",
-        isSeller:false,
-    })
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    contactNumber: '',
+    isSeller: false,
+  });
 
-    const handleChange = (e) => {
-        const {name,value,type,checked} = e.target 
-        setFormDate(prev => ({
-            ...prev,
-            [name]:type === 'checkbox' ? checked : value
-        }))
-    }
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
-    const handleSubmit = async(e) =>{
-        e.preventDefault()
-        await handleRegister({
-            email:FormData.email,
-            contact:FormData.contactNumber,
-            password:FormData.password,
-            isSeller:FormData.isSeller,
-            fullname:FormData.fullname,
-        })
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add logic to register the user
+  };
 
-    return (
-        <main className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-6 md:py-10 bg-background text-on-surface w-full">
-            {/* Dynamic Product Experience Background */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-black">
-                <div 
-                    className="absolute inset-0 opacity-60 transition-transform duration-[10000ms] ease-linear scale-105" 
-                    style={{
-                        backgroundImage: `url('/bg_1.png')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        filter: 'contrast(110%) brightness(40%) saturate(120%)'
-                    }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
-            </div>
+  return (
+    <div className="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen">
+      <main className="min-h-screen flex items-stretch">
+        {/* Visual Anchor: Left Split (Artisanal Pulses) */}
+        <section className="hidden lg:block w-7/12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-surface z-10"></div>
+          <img 
+            alt="Artisanal heirloom beans and black lentils" 
+            className="absolute inset-0 w-full h-full object-cover grayscale opacity-60" 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoYRsda-Txy1fUnXCR49c0ExMfPPA9qF5cxIRJP0ENmxEqfFE9JgTPeZX4-Jg0MEM1Zv8FwbEba3ySv5PN9IVvcyDSPItTfv_ZMtHMjhbyhvEp8lWr5V6fVhGILvr-tW1UO-YAyd4WnIxLVbbmggknThcK5wqOkO3Drb1MgJlTFB46Bf414m6FgHTNeSyE6qIpsIEAAiGuuTR-XJeaRZHaWXOEdXqePOtqi-gdAhC6I_-elGej0noshbz5qh66d6G8E5RrpoEKeeM" 
+          />
+          <div className="absolute bottom-20 left-20 z-20 max-w-md">
+            <h2 className="font-headline text-5xl italic text-primary tracking-tighter mb-4 leading-tight">Curated by the earth, delivered to your cellar.</h2>
+            <p className="font-body text-outline text-lg font-light tracking-wide">Join a community of connoisseurs who value the pedigree of every grain.</p>
+          </div>
+        </section>
 
-            {/* Registration Container */}
-            <div className="relative z-10 w-full max-w-[540px]">
-                <div className="text-center mb-6">
-                    <h1 className="font-headline text-4xl md:text-5xl tracking-tighter text-primary mb-2">SNITCH</h1>
-                    <p className="font-label text-[10px] tracking-[0.4em] uppercase text-on-surface-variant opacity-60">Join the collective of discerning harvesters</p>
+        {/* Form Canvas: Right Split */}
+        <section className="w-full lg:w-5/12 flex items-center justify-center bg-surface relative z-20 px-8 py-24 md:px-16 lg:px-24">
+          <div className="w-full max-w-md space-y-12">
+            <header className="space-y-2">
+              <span className="font-label text-[10px] tracking-[0.4em] text-primary uppercase">The Registry</span>
+              <h1 className="font-headline text-6xl tracking-tighter text-on-surface">Create Account</h1>
+            </header>
+
+            <form onSubmit={handleSubmit} className="space-y-10">
+              <div className="space-y-8">
+                {/* Full Name Field */}
+                <div className="group relative">
+                  <label className="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">
+                    Full Name
+                  </label>
+                  <input 
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" 
+                    placeholder="ALEXANDER VOGUE" 
+                    type="text" 
+                    required 
+                  />
                 </div>
 
-                <div className="bg-surface-container-low/40 backdrop-blur-3xl p-6 md:p-10 rounded-lg shadow-2xl">
-                    <form action="#" className="space-y-6" method="POST">
-                        {/* Full Name */}
-                        <div className="group relative">
-                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="name">Full Name</label>
-                            <input 
-                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
-                                id="name" 
-                                name="name" 
-                                placeholder="Arthur P. Morgan" 
-                                required 
-                                type="text"
-                            />
-                        </div>
-
-                        {/* Email Address */}
-                        <div className="group relative">
-                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="email">Email Address</label>
-                            <input 
-                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
-                                id="email" 
-                                name="email" 
-                                placeholder="curator@theharvest.com" 
-                                required 
-                                type="email"
-                            />
-                        </div>
-
-                        {/* Contact Number */}
-                        <div className="group relative">
-                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="phone">Contact Number</label>
-                            <input 
-                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
-                                id="phone" 
-                                name="phone" 
-                                placeholder="+1 (202) 555-0192" 
-                                type="tel"
-                            />
-                        </div>
-
-                        {/* Password */}
-                        <div className="group relative">
-                            <label className="block font-label text-[10px] tracking-widest text-outline uppercase mb-2 group-focus-within:text-primary transition-colors" htmlFor="password">Password</label>
-                            <input 
-                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 text-on-surface focus:ring-0 focus:border-primary transition-all duration-500 font-headline text-xl placeholder:text-surface-container-highest" 
-                                id="password" 
-                                name="password" 
-                                placeholder="••••••••••••" 
-                                required 
-                                type="password"
-                            />
-                        </div>
-
-                        {/* Seller Toggle */}
-                        <div className="flex items-center justify-between pt-4">
-                            <div className="space-y-1">
-                                <span className="block font-label text-sm text-on-surface">Become a Merchant</span>
-                                <span className="block font-label text-[10px] text-on-surface-variant/60 uppercase tracking-wider">Access the Seller Guild dashboard</span>
-                            </div>
-                            <label className="relative inline-flex items-center cursor-pointer">
-                                <input className="sr-only peer" name="is_seller" type="checkbox"/>
-                                <div className="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
-                            </label>
-                        </div>
-
-                        {/* Submit Action */}
-                        <div className="pt-6">
-                            <button className="w-full py-4 px-8 bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-xs tracking-[0.3em] uppercase font-bold rounded-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 flex justify-center items-center gap-3" type="submit">
-                                Initiate Membership
-                            </button>
-                        </div>
-                    </form>
-
-                    <div className="mt-8 text-center">
-                        <p className="font-label text-[10px] tracking-widest text-on-surface-variant/40 uppercase">
-                            Already part of the heritage? 
-                            <a className="text-primary hover:text-primary-fixed ml-2 transition-colors" href="/login">Sign In</a>
-                        </p>
-                    </div>
+                {/* Email Field */}
+                <div className="group relative">
+                  <label className="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">
+                    Email Address
+                  </label>
+                  <input 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" 
+                    placeholder="CLIENT@EPICUREAN.COM" 
+                    type="email" 
+                    required 
+                  />
                 </div>
 
-                {/* Minimalist Footer Detail */}
-                <div className="mt-8 text-center space-y-4">
-                    <div className="flex justify-center items-center gap-8 opacity-30 grayscale contrast-150">
-                        <img alt="minimalist botanical logo icon of a single wheat stalk on dark background" className="h-6 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1RN63gl_XRaRZK2GPm5S4hpoZKbt6ymBSGOTKyLmTP7cpTgwB-NCQBoCm0t3VRmbW1r5O3sQSAkuoBj6U1c_KLlXZ_Rjzv7SIbnZufpiGRpLG5LTCtO6FliZ1NkiYczpuHgPzmJz_2UY7LcID1N6ojuHofQ206pPEWKlty0BOYa0jJeAlgOA3Xb3U3YFE2c14I29_pnzlk5KU-SgQBlxmZm8m-65L4dYVPsE7uUx2HF-l7NyvbSkM68w_ZO1FQSH-lpvKcjDyIUc" />
-                        <img alt="minimalist abstract geometric logo mark of a circle and line in gold" className="h-6 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5w3f8lL_1Y2fWMfZXLael0nCSJTE00tZA2pHhPVs2UmNkm9HTYoiZJ8BjFgNUZWTD_aVu6Zvjv_PInxaPJnRThW7wLO6ZASAiaSlGFSxSYKNdKJ8IxXT_Ne9u3UKjfJU7uroSx9O94MQUNzqj2WTTsJNYDy5TRlt9rLQ4kDfO6hcJ2E57RKgTITaCKV1l4ELtTOp1cZ9keqYmfHpYy_upJF7Ogf5GVLjJjQrmbUIQdB4YSAWAA8zxOeitzZRzrCsOVjYWRceRDkk" />
-                    </div>
-                    <p className="font-label text-[9px] tracking-[0.5em] text-on-surface-variant/30 uppercase">The Art of the Harvest © 2024</p>
+                {/* Password Field */}
+                <div className="group relative">
+                  <label className="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">
+                    Password
+                  </label>
+                  <input 
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" 
+                    placeholder="••••••••••••" 
+                    type="password" 
+                    required 
+                  />
                 </div>
-            </div>
-        </main>
-    );
+
+                {/* Contact Field */}
+                <div className="group relative">
+                  <label className="block font-label text-[10px] uppercase tracking-widest text-outline group-focus-within:text-primary transition-colors duration-300 mb-2">
+                    Contact Number
+                  </label>
+                  <input 
+                    name="contactNumber"
+                    value={formData.contactNumber}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 font-body text-on-surface placeholder:text-surface-variant focus:ring-0 focus:border-primary transition-all duration-500 form-input-focus tracking-widest text-sm" 
+                    placeholder="+1 (000) 000-0000" 
+                    type="tel" 
+                    required 
+                  />
+                </div>
+              </div>
+
+              {/* Merchant Toggle */}
+              <div className="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant/10 group hover:border-primary/20 transition-all duration-500">
+                <div className="flex flex-col gap-1">
+                  <span className="font-label text-xs tracking-widest text-on-surface uppercase">Become a Merchant</span>
+                  <span className="font-body text-[10px] text-outline">List your artisanal harvest in our pantry</span>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input 
+                    name="isSeller"
+                    type="checkbox" 
+                    checked={formData.isSeller}
+                    onChange={handleChange}
+                    className="sr-only peer" 
+                  />
+                  <div className="w-11 h-5 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-on-surface-variant after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+                </label>
+              </div>
+
+              <div className="pt-6 space-y-6">
+                <button type="submit" className="w-full py-5 cursor-pointer bg-gradient-to-r from-primary to-primary-container text-on-primary font-label text-xs uppercase tracking-[0.3em] font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/10">
+                  Create Account
+                </button>
+                <div className="text-center">
+                  <p className="font-body text-[10px] tracking-widest text-outline uppercase">
+                    Already a member?{' '}
+                    <Link to="/login" className="text-primary hover:text-white transition-colors duration-300 ml-2">
+                       Sign In
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 };
 
 export default Register;
